@@ -80,8 +80,10 @@ class Vehicle
   Engine BRE;
   int stby1;
   int stby2;
+  boolean busy
   
   public:
+  
   void init(int s1, int s2)
   {
     FLE.initialize(22,23,2);
@@ -98,22 +100,27 @@ class Vehicle
   
   void forward()
   {
+    busy=true;
     FLE.forward();
     FRE.forward();
     BLE.forward();
     BRE.forward();
+    busy=false;
   }
 
   void backward()
   {
+    busy=true;
     FLE.backward();
     FRE.backward();
     BLE.backward();
     BRE.backward();
+    busy=false;
   }
 
   void halt()
   {
+    busy=true;
     FLE.reverse();
     FRE.reverse();
     BLE.reverse();
@@ -123,29 +130,41 @@ class Vehicle
     FRE.stop();
     BLE.stop();
     BRE.stop();
+    busy=false;
   }
 
   void clock()
   {
+    busy=true;
     FLE.forward();
     BLE.forward();
     FRE.backward();
     BRE.backward();
+    busy=false;
   }
 
   void againstclock()
   {
+    busy=true;
     FLE.backward();
     BLE.backward();
     FRE.forward();
     BRE.forward();
+    busy=false;
   }
   void stop()
   {
+    busy=true;
     FLE.stop();
     FRE.stop();
     BRE.stop();
     BLE.stop();
+    busy=false;
+  }
+
+  bool isBusy()
+  {
+    return busy;
   }
 };
 
@@ -179,6 +198,24 @@ class US
       Timing();    
       return duration /29 / 2 ;
     }
+};
+
+class Scanner
+{
+  private:
+  US scanner;
+  
+  public:
+  
+  void init(US s)
+  {
+    scanner = s;
+  }
+  
+  bool alarm()
+  {
+    return scanner.distance()>10;
+  }
 };
 
 Vehicle vh;
