@@ -18,12 +18,10 @@ void clear()
   {
     digitalWrite(6,LOW);
     digitalWrite(10,LOW);
-    digitalWrite(11,LOW);
   }
   if (!BRS.alarm())
   {
     digitalWrite(9,LOW);
-    digitalWrite(12,LOW);
     digitalWrite(13,LOW);
   }
   if (!FRS.alarm())
@@ -44,19 +42,11 @@ void loop()
     {
       digitalWrite(10,HIGH);
     }
-    else if (BLS.alarm())
-    {
-      digitalWrite(11,HIGH);
-    }
     else digitalWrite(6,HIGH);
   }
   else if (BRS.alarm())
   {
-    if (FRS.alarm())
-    {
-      digitalWrite(12,HIGH);
-    }
-    else if (BLS.alarm())
+    if (BLS.alarm())
     {
       digitalWrite(13,HIGH);
     }
