@@ -12,6 +12,7 @@ class Scanner
 	public:
 	
 	void init(US s);
+	void init(int t, int e);
 	bool alarm();
 };
 #endif
