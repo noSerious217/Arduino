@@ -4,9 +4,9 @@
 
 void Vehicle::init(int s1, int s2)
 {
-    FLE.initialize(22,23,2);
+    FLE.initialize(22,23,6);
     FRE.initialize(28,27,4);
-    BLE.initialize(26,25,3);
+    BLE.initialize(26,25,7);
     BRE.initialize(30,31,5);
     stby1 = s1;
     pinMode(stby1,OUTPUT);
